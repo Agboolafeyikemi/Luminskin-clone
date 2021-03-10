@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { gql, useQuery, useLazyQuery } from '@apollo/client';
 
 import ProductCard from '../../components/ProductCard/ProductCard';
+import Cart from '../../components/Cart/Cart';
 
 import './productsPage.css';
 
@@ -74,7 +75,7 @@ const Product = () => {
     setAllProducts(products);
   }
 
-  const [getProducts, { loading, error }] = useLazyQuery(PRODUCTS, {
+  const [getProducts, { loading, error, refetch }] = useLazyQuery(PRODUCTS, {
     // variables: { selectedCurrency },
     skip: !selectedCurrency,
     onCompleted: (data) => {

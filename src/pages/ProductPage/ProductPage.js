@@ -116,9 +116,9 @@ const Product = () => {
             );
           })}
         </section>
-        {/* {showCart && (
+        {showCart && (
           <Cart
-            productsInCart={productsInCart.map((prod) => {
+            productsInCart={productsInCart?.map((prod) => {
               prod.price = allProducts.find(
                 (product) => product.id === prod.id
               ).price;
@@ -128,13 +128,13 @@ const Product = () => {
             onRemoveFromCart={handleRemoveFromCart}
             onHideCart={handleHideCart}
             totalPrice={productsInCart
-              .map((prod) => {
+              ?.map((prod) => {
                 prod.price = allProducts.find(
                   (product) => product.id === prod.id
                 ).price;
                 return prod;
               })
-              .map((prod) => prod.count * prod.price)
+              ?.map((prod) => prod.count * prod.price)
               .reduce(
                 (accumulator, currentValue) => accumulator + currentValue,
                 0
@@ -146,7 +146,7 @@ const Product = () => {
             selectedCurrency={selectedCurrency}
             loadingCurrency={loading}
           />
-        )} */}
+        )}
       </div>
     </>
   );

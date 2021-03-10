@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { gql, useQuery, useLazyQuery } from '@apollo/client';
 
-import { gql, useQuery } from '@apollo/client';
+import ProductCard from '../../components/ProductCard/ProductCard';
+
+import './productsPage.css';
 
 const Product = () => {
   let [productsInCart, setProductsInCart] = useState([]);
@@ -28,7 +31,7 @@ const Product = () => {
         setProductsInCart([...productsInCart, addedProduct]);
       } else {
         setProductsInCart(
-          productsInCart.map((prod) => {
+          productsInCart?.map((prod) => {
             if (prod.id === product.id) {
               const updatedProd = { ...prod, count: ++prod.count };
               return updatedProd;
@@ -67,19 +70,27 @@ const Product = () => {
   }
 
   function handleQueryComplete({ products }) {
+    console.log(products, 'FEYIKEMI\n\n\n\n\n');
     setAllProducts(products);
   }
 
-  const { loading, error, data } = useQuery(PRODUCTS, {
-    variables: { selectedCurrency },
+  const [getProducts, { loading, error }] = useLazyQuery(PRODUCTS, {
+    // variables: { selectedCurrency },
     skip: !selectedCurrency,
     onCompleted: (data) => {
-      console.log('query successful', data);
-      handleQueryComplete(data);
+      setAllProducts(data.products);
     }
   });
+
+  useEffect(() => {
+    getProducts({
+      variables: { selectedCurrency }
+    });
+  }, []);
+
   if (loading && !allProducts.length > 0) return 'Loading ...';
   if (error) return `Error! ${error}`;
+  console.log(allProducts, '\n\n\n\nallProducts');
 
   return (
     <>
@@ -92,9 +103,9 @@ const Product = () => {
           </div>
         </section>
         <section className="products-section">
-          {allProducts.map((product) => {
+          {allProducts?.map((product) => {
             return (
-              <Product
+              <ProductCard
                 key={product.id}
                 product={product}
                 onShowCart={handleShowCart}

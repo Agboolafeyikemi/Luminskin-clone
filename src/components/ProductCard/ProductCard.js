@@ -2,13 +2,14 @@ import React from 'react';
 import './ProductCard.css';
 import { FormattedNumber } from 'react-intl';
 
-function Product({
+const ProductCard = ({
   product,
   onShowCart,
   onAddToCart,
   selectedCurrency,
   loadingCurrency
-}) {
+}) => {
+  console.log(product, '\n\n\n\nADAOBI');
   return (
     <div className="single-product">
       <div className="product-image-container">
@@ -44,6 +45,6 @@ function Product({
       </button>
     </div>
   );
-}
+};
 
-export default Product;
+export default ProductCard;

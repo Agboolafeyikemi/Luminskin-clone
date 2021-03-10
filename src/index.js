@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { IntlProvider } from 'react-intl';
 
 const client = new ApolloClient({
   uri: 'https://pangaea-interviews.now.sh/api/graphql',
@@ -13,9 +14,9 @@ const client = new ApolloClient({
 https: ReactDOM.render(
   <ApolloProvider client={client}>
     <Router>
-      <React.StrictMode>
+      <IntlProvider locale="en">
         <App />
-      </React.StrictMode>
+      </IntlProvider>
     </Router>
   </ApolloProvider>,
   document.getElementById('root')

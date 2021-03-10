@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { useQuery, gql } from '@apollo/client';
-import { FormattedNumber } from 'react-intl';
 
+import { FormattedNumber } from 'react-intl';
 import './Cart.css';
 
 const Cart = ({
@@ -64,12 +64,11 @@ const Cart = ({
         {productsInCart.length === 0 && (
           <p className="empty-cart">There are no items in your cart</p>
         )}
-        {productsInCart?.map(({ product }) => {
-          const { image_url, title, price, id, count } = product;
+        {productsInCart.map((product) => {
           return (
-            <div className="cart-product" key={id}>
+            <div className="cart-product" key={product.id}>
               <div className="product-description">
-                <h6>{title}</h6>
+                <h6>{product.title}</h6>
                 <div className="quantity">
                   <div className="quantity-selector">
                     <span
@@ -78,7 +77,7 @@ const Cart = ({
                     >
                       -
                     </span>
-                    <span className="counter"> {count} </span>
+                    <span className="counter"> {product.count} </span>
                     <span
                       className="counter-action"
                       onClick={() => onAddToCart(product)}
@@ -90,7 +89,8 @@ const Cart = ({
                   <div className="price">
                     {!loadingCurrency ? (
                       <FormattedNumber
-                        value={count * price}
+                        value={product.count * product.price}
+                        // eslint-disable-next-line react/style-prop-object
                         style="currency"
                         currency={selectedCurrency}
                       />
@@ -103,8 +103,8 @@ const Cart = ({
               <div className="product-image">
                 <img
                   className="product-image"
-                  src={image_url}
-                  alt={title}
+                  src={product.image_url}
+                  alt=""
                 ></img>
               </div>
             </div>
@@ -120,6 +120,7 @@ const Cart = ({
               {!loadingCurrency ? (
                 <FormattedNumber
                   value={totalPrice}
+                  // eslint-disable-next-line react/style-prop-object
                   style="currency"
                   currency={selectedCurrency}
                 />

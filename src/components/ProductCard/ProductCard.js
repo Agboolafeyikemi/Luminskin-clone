@@ -10,21 +10,18 @@ const ProductCard = ({
   loadingCurrency
 }) => {
   console.log(product, '\n\n\n\nADAOBI');
+  const { image_url, title, price } = product;
   return (
     <div className="single-product">
       <div className="product-image-container">
-        <img
-          className="product-image"
-          src={product.image_url}
-          alt={product.title}
-        ></img>
+        <img className="product-image" src={image_url} alt={title}></img>
       </div>
-      <h3 className="product-title">{product.title}</h3>
+      <h3 className="product-title">{title}</h3>
       <p className="single-product-price">
         From{' '}
         {!loadingCurrency ? (
           <FormattedNumber
-            value={product.price}
+            value={price}
             // eslint-disable-next-line react/style-prop-object
             style="currency"
             currency={selectedCurrency}

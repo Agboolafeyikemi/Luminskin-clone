@@ -1,0 +1,52 @@
+.products-page {
+  position: relative;
+}
+.products-section {
+  padding: 25px;
+  background-color: #e2e6e3;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.header-section {
+  display: flex;
+  justify-content: space-between;
+  padding: 70px 25px 25px;
+  background-color: #fcfcf9;
+  align-items: flex-end;
+}
+
+.header-section .products-header {
+  max-width: 500px;
+  width: 50%;
+  margin: 0 60px;
+}
+
+.header-section .products-header h2 {
+  font-size: 48px;
+  letter-spacing: 0px;
+  font-family: freight-display-pro, serif;
+  text-transform: none;
+  color: #2b2e2b;
+  margin-bottom: 26px;
+  line-height: 1.2;
+}
+
+.header-section .products-header p {
+  font-size: 16px;
+  letter-spacing: 0.03px;
+  text-transform: none;
+  color: #2b2e2b;
+  margin-bottom: 36px;
+}
+
+.screen-overlay {
+  height: 100%;
+  z-index: 10;
+  position: fixed;
+  background-color: rgba(110, 123, 112, 0.38);
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding: 0px;
+  width: 100%;
+}

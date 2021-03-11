@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { gql, useQuery, useLazyQuery } from '@apollo/client';
+import { gql, useLazyQuery } from '@apollo/client';
 
 import ProductCard from '../../components/ProductCard/ProductCard';
 import Cart from '../../components/Cart/Cart';
+import Spinner from '../../components/Spinner/Spinner';
 
 import './productsPage.css';
 
@@ -70,13 +71,7 @@ const Product = () => {
     setShowCart(false);
   }
 
-  function handleQueryComplete({ products }) {
-    console.log(products, 'FEYIKEMI\n\n\n\n\n');
-    setAllProducts(products);
-  }
-
   const [getProducts, { loading, error, refetch }] = useLazyQuery(PRODUCTS, {
-    // variables: { selectedCurrency },
     skip: !selectedCurrency,
     onCompleted: (data) => {
       setAllProducts(data.products);
@@ -87,11 +82,10 @@ const Product = () => {
     getProducts({
       variables: { selectedCurrency }
     });
-  }, []);
+  }, [selectedCurrency, getProducts]);
 
-  if (loading && !allProducts.length > 0) return 'Loading ...';
+  if (loading && !allProducts.length > 0) return <Spinner />;
   if (error) return `Error! ${error}`;
-  console.log(allProducts, '\n\n\n\nallProducts');
 
   return (
     <>

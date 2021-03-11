@@ -3,6 +3,7 @@ import React from 'react';
 import { useQuery, gql } from '@apollo/client';
 
 import { FormattedNumber } from 'react-intl';
+import rightArrow from '../../assest/right-arrow.png';
 import './Cart.css';
 
 const Cart = ({
@@ -32,8 +33,8 @@ const Cart = ({
           <div className="flex-container" onClick={onHideCart}>
             <img
               className="close-img"
-              src={process.env.PUBLIC_URL + '/right-arrow.png'}
-              alt=""
+              src={rightArrow}
+              alt="closeSidebarArrow"
             ></img>
           </div>
           <div className="flex-container section-container">
@@ -120,7 +121,6 @@ const Cart = ({
               {!loadingCurrency ? (
                 <FormattedNumber
                   value={totalPrice}
-                  // eslint-disable-next-line react/style-prop-object
                   style="currency"
                   currency={selectedCurrency}
                 />

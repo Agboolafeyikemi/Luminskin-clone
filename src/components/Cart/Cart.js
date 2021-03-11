@@ -121,7 +121,7 @@ const Cart = ({
               {!loadingCurrency ? (
                 <FormattedNumber
                   value={totalPrice}
-                  style="currency"
+                  className="currency"
                   currency={selectedCurrency}
                 />
               ) : (

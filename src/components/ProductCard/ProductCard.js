@@ -29,7 +29,6 @@ const ProductCard = ({
           ''
         )}
       </p>
-
       <button
         className="acn-bttn acn-bttn-2"
         onClick={() => {

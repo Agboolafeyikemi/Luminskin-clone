@@ -11,7 +11,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 });
 
-https: ReactDOM.render(
+ReactDOM.render(
   <ApolloProvider client={client}>
     <Router>
       <IntlProvider locale="en">

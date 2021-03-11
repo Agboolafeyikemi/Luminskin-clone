@@ -9,7 +9,6 @@ const ProductCard = ({
   selectedCurrency,
   loadingCurrency
 }) => {
-  console.log(product, '\n\n\n\nADAOBI');
   const { image_url, title, price } = product;
   return (
     <div className="single-product">
